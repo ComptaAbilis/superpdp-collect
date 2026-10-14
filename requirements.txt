@@ -1,0 +1,8 @@
+# ============================================================
+# FICHIER 3/3 : requirements.txt
+# (trois lignes, une dependance par ligne)
+# ============================================================
+
+mistralai-workflows[httpx]
+httpx
+pydantic
