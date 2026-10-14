@@ -1,7 +1,3 @@
-# ============================================================
-# FICHIER 1/3 : workflow.py
-# ============================================================
-
 """Workflow Mistral : collecte des factures recues via l'API Super PDP.
 
 Recupere toutes les factures recues (direction=in) depuis un identifiant
