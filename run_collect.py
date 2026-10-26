@@ -40,7 +40,7 @@ def spdp_token():
         "client_secret": SP_CLIENT_SECRET,
     }).encode()
     st, _, body = http("https://api.superpdp.tech/oauth2/token", data=data,
-                       {"Content-Type": "application/x-www-form-urlencoded"})
+                       headers={"Content-Type": "application/x-www-form-urlencoded"})
     if st != 200:
         raise RuntimeError(f"Token Super PDP {st}: {body[:300]}")
     return json.loads(body)["access_token"]
@@ -60,7 +60,7 @@ def graph_token():
     }).encode()
     st, _, body = http(
         f"https://login.microsoftonline.com/{SP_TENANT}/oauth2/v2.0/token", data=data,
-        {"Content-Type": "application/x-www-form-urlencoded"})
+        headers={"Content-Type": "application/x-www-form-urlencoded"})
     if st != 200:
         raise RuntimeError(f"Token Graph {st}: {body[:300]}")
     return json.loads(body)["access_token"]
