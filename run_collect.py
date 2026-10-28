@@ -153,7 +153,8 @@ def main():
             detail = json.loads(body)
             en = detail.get("en_invoice") or detail
             ids = ((en.get("buyer") or {}).get("identifiers")) or []
-            siret = next((i for i in ids if re.fullmatch(r"\d{14}", str(i))), None)
+            siret = next((str(i.get("value")) for i in ids
+                          if isinstance(i, dict) and re.fullmatch(r"\d{14}", str(i.get("value", "")))), None)
             folder_key = str(siret) if siret else SIREN_FALLBACK
             month = (en.get("issue_date") or "")[:7] or "SANS_DATE"
             number = sanitize(en.get("number") or detail.get("number") or "")
