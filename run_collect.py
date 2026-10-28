@@ -156,7 +156,7 @@ def main():
             siret = next((str(i.get("value")) for i in ids
                           if isinstance(i, dict) and re.fullmatch(r"\d{14}", str(i.get("value", "")))), None)
             folder_key = str(siret) if siret else SIREN_FALLBACK
-            month = (en.get("issue_date") or "")[:7] or "SANS_DATE"
+            month = (en.get("issue_date") or inv.get("created_at") or "")[:7] or "SANS_DATE"
             number = sanitize(en.get("number") or detail.get("number") or "")
 
             month_folder = child_folder(gtoken, child_folder(gtoken, parent, folder_key), month)
